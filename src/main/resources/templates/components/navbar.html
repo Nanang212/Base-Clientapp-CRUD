@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Navbar</title>
+  </head>
+  <body>
+    <div th:fragment="navbar">
+      <nav class="navbar navbar-expand-lg bg-dark-subtle">
+        <div class="container-fluid">
+          <a
+            class="navbar-brand fw-bold"
+            th:href="@{/}"
+            th:classappend="${isActive == 'home'? 'active fw-bold' : ''}"
+          >
+            <img
+              th:src="@{/images/icon.svg}"
+              alt="Logo"
+              width="40"
+              height="30"
+              class="d-inline-block align-text-top"
+            />
+            MCC 81
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  th:href="@{/dashboard}"
+                  th:classappend="${isActive == 'home'? 'active fw-bold' : ''}"
+                  >Home</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  th:href="@{/region}"
+                  th:classappend="${isActive == 'region'? 'active fw-bold' : ''}"
+                  >Region</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  th:href="@{/country}"
+                  th:classappend="${isActive == 'country'? 'active fw-bold' : ''}"
+                  >Country</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </body>
+</html>

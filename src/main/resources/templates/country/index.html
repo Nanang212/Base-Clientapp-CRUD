@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html
+  xmlns="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout/main}"
+>
+  <head>
+    <title>Country</title>
+  </head>
+  <body>
+    <section class="container mt-5" layout:fragment="content">
+      <div class="justify-content-between align-items-center mb-3">
+        <h1>List of Country</h1>
+        <button
+          type="button"
+          class="btn btn-success fw-bold"
+          data-bs-toggle="modal"
+          data-bs-target="#create"
+        >
+          Add Country
+        </button>
+      </div>
+      <table
+        class="table table-hover table-bordered table-striped text-center mt-5"
+        id="table-country"
+      >
+        <thead class="table-dark">
+          <tr>
+            <th class="col-2 text-center">No</th>
+            <th class="col-3 text-center">Code</th>
+            <th class="col-5 text-center">Name</th>
+            <th class="col-5 text-center">Region</th>
+            <th class="col-5 text-center">Action</th>
+          </tr>
+        </thead>
+      </table>
+
+      <!--modal detail-->
+      <div
+        class="modal fade"
+        id="detailCountry"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">
+                Country Details
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <p><strong>ID:</strong> <span id="countryId"></span></p>
+              <p><strong>Code:</strong> <span id="countryCode"></span></p>
+              <p><strong>Name:</strong> <span id="countryName"></span></p>
+              <p>
+                <strong>Region:</strong>
+                <span id="countryRegion"></span>
+              </p>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Create -->
+      <div
+        class="modal fade"
+        id="create"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="createLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5 fw-bold" id="createLabel">
+                Add Country
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <form>
+              <div class="modal-body">
+                <div class="input-group mb-3">
+                  <span class="input-group-text fw-bold" id="code">Code</span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    aria-label="Sizing example input"
+                    aria-describedby="code"
+                    id="create-code"
+                    required
+                  />
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text fw-bold" id="name">Name</span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    aria-label="Sizing example input"
+                    aria-describedby="name"
+                    id="create-name"
+                    required
+                  />
+                </div>
+                <div class="input-group">
+                  <span class="input-group-text fw-bold">Region</span>
+                  <select
+                    id="selectRegion"
+                    class="form-select"
+                    aria-label="Default select example"
+                  >
+                    <option value="">Select region</option>
+                  </select>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button
+                  id="create-country"
+                  type="button"
+                  class="btn btn-success"
+                >
+                  Save
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Update Country -->
+      <div
+        class="modal fade"
+        id="updateCountryModal"
+        tabindex="-1"
+        aria-labelledby="updateCountryModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="updateCountryModalLabel">
+                Update Country
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form id="updateCountryForm">
+                <div class="mb-3">
+                  <label for="updateCountryCodeInput" class="form-label"
+                    >Country Code:</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="updateCountryCodeInput"
+                    placeholder="Enter Country Code"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="updateCountryNameInput" class="form-label"
+                    >Country Name:</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="updateCountryNameInput"
+                    placeholder="Enter Country Name"
+                  />
+                </div>
+                <div class="input-group">
+                  <span class="input-group-text fw-bold">Region</span>
+                  <select
+                    id="updateRegionSelection"
+                    class="form-select"
+                    aria-label="Default select example"
+                  >
+                    <option value="">Select these region</option>
+                  </select>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                id="updateCountryButton"
+              >
+                Update
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div layout:fragment="script">
+      <script th:src="@{/js/country.js}"></script>
+    </div>
+  </body>
+</html>
